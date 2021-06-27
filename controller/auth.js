@@ -35,3 +35,9 @@ module.exports.signin = async (req, res) => {
 		res.status(500).json({ status: err });
 	}
 };
+
+module.exports.createProduct = async (req, res) => {
+	const {} = req.body;
+	const product = await 'oro';
+	res.json(product);
+};

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const bodyParser = require('body-parser');
+const productRoutes = require('./routes/product');
 
 mongoose
 	.connect(
@@ -16,7 +17,9 @@ mongoose
 
 let port = process.env.PORT || 4000;
 app.use(bodyParser.json());
+
 app.use(authRoutes);
+app.use(productRoutes);
 
 app.listen(port, (req, res) => {
 	console.log(`server starting at port ${port}`);
