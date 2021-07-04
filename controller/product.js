@@ -1,4 +1,5 @@
 const Product = require('../models/Products');
+const Cart = require('../models/Cart');
 
 module.exports.createProduct = async (req, res) => {
 	try {
@@ -23,4 +24,15 @@ module.exports.category = async (req, res) => {
 	const { category } = req.params;
 	const products = await Product.find({ category: category });
 	res.status(200).json(products);
+};
+
+module.exports.addCart = async (req, res) => {
+	try {
+		const { userId, products } = req.body;
+		const cart = await Cart.create({ userId, products });
+		res.status(200).json(cart);
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ status: 'something went wrong' });
+	}
 };
