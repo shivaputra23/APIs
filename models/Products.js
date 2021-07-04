@@ -21,6 +21,10 @@ const Product = new monogoose.Schema({
 		type: String,
 		required: true,
 	},
+	category: {
+		type: String,
+		required: true,
+	},
 });
 
 module.exports = monogoose.model('products', Product);
