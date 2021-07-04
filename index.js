@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const bodyParser = require('body-parser');
 const productRoutes = require('./routes/product');
+const cors = require('cors');
 
 mongoose
 	.connect(
@@ -19,6 +20,8 @@ mongoose
 	});
 
 let port = process.env.PORT || 4000;
+
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use(authRoutes);
