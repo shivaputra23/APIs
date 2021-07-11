@@ -36,10 +36,10 @@ module.exports.addCart = async (req, res) => {
 		if (product) {
 			product['quantity'] += 1;
 			await product.save();
-			res.status.json({ status: 'updated successfully' });
+			res.status(200).json({ status: 'updated successfully' });
 		} else {
 			await CartItem.create({ productId, quantity: 1, userId });
-			res.status.json({ status: 'created successfully' });
+			res.status(200).json({ status: 'created successfully' });
 		}
 	} catch (err) {
 		console.log(err);
