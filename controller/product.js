@@ -1,6 +1,7 @@
 const Product = require('../models/Products');
 const Cart = require('../models/Cart');
 const CartItem = require('../models/CartItem');
+const mongoose = require('mongoose');
 
 module.exports.createProduct = async (req, res) => {
 	try {
@@ -29,7 +30,8 @@ module.exports.category = async (req, res) => {
 
 module.exports.addCart = async (req, res) => {
 	try {
-		const { userId, productId } = req.body;
+		const { userId, productId: products } = req.body;
+		const productId = mongoose.Types.ObjectId(products);
 		const product = await CartItem.findOne({ productId });
 		if (product) {
 			product['quantity'] += 1;
