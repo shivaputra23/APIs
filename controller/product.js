@@ -68,3 +68,9 @@ module.exports.updateQuantity = async (req, res) => {
 	await cartItem.save();
 	res.status(200).json({ status: 'updated successfully' });
 };
+
+module.exports.deleteProduct = async (req, res) => {
+	const { id } = req.params;
+	const item = await CartItem.deleteOne({ _id: id });
+	res.status(200).json({ status: 'deleted successfully' });
+};
